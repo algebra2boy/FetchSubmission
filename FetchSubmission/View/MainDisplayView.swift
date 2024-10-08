@@ -11,9 +11,9 @@ typealias GroupedListItem = [Int: [ListItem]]
 
 /// The main display view to render a list of items
 struct MainDisplayView: View {
-
+    
     @State private var listViewModel: ListViewModel = ListViewModel()
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -30,7 +30,7 @@ struct MainDisplayView: View {
             }
         }
     }
-
+    
     @ViewBuilder func noItemAvailableView() -> some View {
         if listViewModel.listItems.isEmpty {
             ContentUnavailableView {
@@ -40,7 +40,7 @@ struct MainDisplayView: View {
             }
         }
     }
-
+    
     @ViewBuilder func listView() -> some View {
         let group = groupByListID(with: listViewModel.listItems)
         List {
@@ -58,13 +58,14 @@ struct MainDisplayView: View {
                         }
                     }
                 } header: {
-                    Text("listId \(listId)")
+                    Text("listId \(listId) (\(group[listId]?.count ?? 0) items)")
                         .font(.subheadline)
                 }
             }
         }
+        
     }
-
+    
     /// Group list items using an dictionary by its list ID
     /// - Parameter items: An array of `ListItem` objects to be grouped.
     /// - Returns: A dictionary where the keys are the `listID` and the values are arrays of `ListItem` objects that belong to those list IDs.

@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// a view model that handles the manage the list item
 @Observable class ListViewModel {
 
+    /// An array of list items with information like `id`, `listId`, and `name`
     var listItems: [ListItem] = []
 
     init() { }
