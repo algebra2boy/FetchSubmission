@@ -46,7 +46,7 @@ import Foundation
 
     }
 
-    // a mock view model that simulates fetching when server is not available
+    /// a mock view model that simulates fetching when server is not available
     static let mock: ListViewModel = {
         let items: [ListItem] = [
             .init(id: 1, listId: 1, name: "Item 1"),
