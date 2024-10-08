@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ListItem: Identifiable, Decodable, Comparable, Hashable {
+/// An struct that represents the `ListItem` structure
+struct ListItem: Identifiable, Decodable, Hashable {
 
     var id: Int
     var listId: Int
@@ -17,12 +18,5 @@ struct ListItem: Identifiable, Decodable, Comparable, Hashable {
         self.id = id
         self.listId = listId
         self.name = name
-    }
-
-    static func < (lhs: ListItem, rhs: ListItem) -> Bool {
-        if lhs.listId == rhs.listId {
-            return lhs.name ?? "" < rhs.name ?? ""
-        }
-        return lhs.listId < rhs.listId
     }
 }

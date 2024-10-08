@@ -13,6 +13,7 @@ import Foundation
 
     init() { }
 
+    /// Fetch a list of items from the server URL and perform deserialization
     func fetchListItems() async throws {
         guard let serverURL = URL(string: "https://fetch-hiring.s3.amazonaws.com/hiring.json") else { return }
 
@@ -23,13 +24,11 @@ import Foundation
         var items = try JSONDecoder().decode([ListItem].self, from: data)
 
         // filter the ones whose name is blank or null
-        // and then sort by "listId" and then by "name"
         items = items.filter {
             guard $0.name != nil else { return false }
             guard $0.name!.count > 0 else { return false }
             return true
         }
-        .sorted()
 
         self.listItems = items
 
