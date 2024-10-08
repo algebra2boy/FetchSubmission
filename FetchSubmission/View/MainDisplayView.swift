@@ -12,8 +12,8 @@ typealias GroupedListItem = [Int: [ListItem]]
 /// The main display view to render a list of items
 struct MainDisplayView: View {
     
-    @State private var listViewModel: ListViewModel = ListViewModel()
-    
+    @Environment(ListViewModel.self) var listViewModel
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -78,6 +78,12 @@ struct MainDisplayView: View {
     }
 }
 
-#Preview {
+#Preview("production") {
     MainDisplayView()
+        .environment(ListViewModel())
+}
+
+#Preview("mock") {
+    MainDisplayView()
+        .environment(ListViewModel.mock)
 }

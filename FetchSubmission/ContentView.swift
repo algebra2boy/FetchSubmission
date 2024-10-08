@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @State private var listViewModel: ListViewModel = ListViewModel()
+
     var body: some View {
         MainDisplayView()
+            .environment(listViewModel)
     }
 }
 
